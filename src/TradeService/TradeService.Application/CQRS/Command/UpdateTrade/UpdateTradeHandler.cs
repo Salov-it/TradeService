@@ -24,7 +24,7 @@ namespace TradeService.Application.CQRS.Command.UpdateTrade
             content.value = request.value;
             content.price = request.price;
             content.status = request.status;
-            content.updatedAt = DateTime.UtcNow.ToString();
+            content.updatedAt = DateTime.Now.ToString();
 
             await _context.SaveChangesAsync(cancellationToken);
             return content;

@@ -37,6 +37,6 @@ namespace TradeService.Application.Common.Behaviors
             }
             return next();
         }
-    
+
     }
 }

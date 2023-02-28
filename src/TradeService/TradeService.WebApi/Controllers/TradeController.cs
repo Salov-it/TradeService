@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TradeService.Application.CQRS.Command.Create;
+using TradeService.Application.CQRS.Command.UpdateTrade;
+using TradeService.Application.CQRS.Querries.Get;
 using TradeService.Application.CQRS.Querries.GetByIdQuerry;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,7 +21,7 @@ namespace TradeService.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] int traderId, int buyerId, int value, int price, string status, int requisiteId, int offerId)
+        public async Task<IActionResult> Create( int traderId, int buyerId, int value, int price, string status, int requisiteId, int offerId)
         {
             var content = new CreateTradeСommand
             {
@@ -35,8 +37,23 @@ namespace TradeService.WebApi.Controllers
             return Ok(answer);
         }
 
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update(int id, int value, int price, string status)
+        {
+            var content = new UpdateTradeCommand
+            {
+                id = id,
+                value = value,
+                price = price,
+                status = status
+            };
+
+            var answer = await mediator.Send(content);
+            return Ok(answer);
+        }
+
         [HttpGet]
-        public async Task<IActionResult> GetByOwner(int Id)
+        public async Task<IActionResult> GetById(int Id)
         {
             var content = new GetByIdQuerry
             {
@@ -45,6 +62,19 @@ namespace TradeService.WebApi.Controllers
             var answer = await mediator.Send(content);
             return Ok(answer);
         }
+
+        [HttpGet("GetBy")]
+        public async Task<IActionResult> Get()
+        {
+            var content = new GetByQuerry
+            {
+               
+            };
+            var answer = await mediator.Send(content);
+            return Ok(answer);
+        }
+
+
     }
 
 }

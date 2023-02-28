@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TradeService.Application\TradeService.Application.csproj" />
     <ProjectReference Include="..\TradeService.Domain\TradeService.Domain.csproj" />
   </ItemGroup>
 

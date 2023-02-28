@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using TradeService.Application.Interface;
 using TradeService.Domain;
-using TradeService.infrastructure;
 
 namespace TradeService.Application.CQRS.Command.Create
 {
@@ -24,7 +23,8 @@ namespace TradeService.Application.CQRS.Command.Create
                 requisiteId = request.requisiteId,
                 status = request.status,
                 offerId = request.offerId,
-                createdAt = DateTime.UtcNow.ToString(),
+                createdAt = DateTime.Now.ToString(),
+                updatedAt = DateTime.Now.ToString(),
             };
             
             await _tradeContext.trade.AddRangeAsync(content);

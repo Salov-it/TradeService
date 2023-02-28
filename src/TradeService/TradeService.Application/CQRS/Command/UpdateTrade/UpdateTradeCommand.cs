@@ -9,6 +9,5 @@ namespace TradeService.Application.CQRS.Command.UpdateTrade
         public int value { get; set; }
         public decimal price { get; set; }
         public string status { get; set; }
-        public string updatedAt { get; set; }
     }
 }

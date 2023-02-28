@@ -8,11 +8,19 @@ namespace TradeService.infrastructure
     {
         public DbSet<Trade> trade { get; set; }
 
+      
+
         public TradeContext(DbContextOptions<TradeContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new Config());
             base.OnModelCreating(modelBuilder);
+        }
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=TradeBasse.db");
         }
     }
 }
